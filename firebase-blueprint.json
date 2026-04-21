@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Storing user identity, role, and currency preferences.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["rider", "driver", "employee", "poster"] },
+        "currency": { "type": "string", "enum": ["BDT", "EUR", "USD", "GBP"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "fullName", "email", "role"]
+    },
+    "Ride": {
+      "title": "Ride Sharing",
+      "description": "Details of a shared ride booking.",
+      "type": "object",
+      "properties": {
+        "riderId": { "type": "string" },
+        "driverId": { "type": "string" },
+        "pickup": { "type": "string" },
+        "destination": { "type": "string" },
+        "pickupCoords": { "type": "object" },
+        "destCoords": { "type": "object" },
+        "price": { "type": "number" },
+        "currency": { "type": "string" },
+        "status": { "type": "string", "enum": ["requested", "accepted", "in-progress", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Job": {
+      "title": "Job Posting",
+      "description": "Context-aware job board for area-based assignments.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "area": { "type": "string" },
+        "posterId": { "type": "string" },
+        "posterName": { "type": "string" },
+        "assigneeId": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "assigned", "completed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User account documents."
+    },
+    "rides/{rideId}": {
+      "schema": "Ride",
+      "description": "Ride transactions."
+    },
+    "jobs/{jobId}": {
+      "schema": "Job",
+      "description": "Collaborative job board."
+    }
+  }
+}

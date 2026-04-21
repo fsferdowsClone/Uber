@@ -1,0 +1,6 @@
+{
+  "name": "Uber Premium",
+  "description": "A high-end mobility and delivery platform inspired by Uber, featuring a sophisticated quiet-luxury design.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}
